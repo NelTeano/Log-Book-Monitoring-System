@@ -1,0 +1,28 @@
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+INSERT INTO `users` (`id`, `username`, `password`) VALUES
+(9, 'user1', '$2y$10$KzRyJyc08m5RM85.RzAosOTz7kqNEf9Wn0eXK25kIis7DWgtNhQFy'),
+(10, 'admin', '$2y$10$YzcF3Dp.BedIYpHWyVWeKOFIR1Nl.WeKqmYPDgoqcHyDahlKnLeKG');
+
+
+CREATE TABLE book (
+   person_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    time_in DATETIME NOT NULL,
+    time_out DATETIME NOT NULL
+);
+
+INSERT INTO book (first_name, last_name, time_in, time_out) VALUES
+('John', 'Doe', '2024-12-06 08:00:00', '2024-12-06 17:00:00'),
+('Jane', 'Smith', '2024-12-06 09:00:00', '2024-12-06 18:00:00'),
+('Michael', 'Johnson', '2024-12-06 07:30:00', '2024-12-06 16:30:00'),
+('Emily', 'Davis', '2024-12-06 10:00:00', '2024-12-06 19:00:00'),
+('Chris', 'Brown', '2024-12-06 08:15:00', '2024-12-06 17:15:00');
+
+
