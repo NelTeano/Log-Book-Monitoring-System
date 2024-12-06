@@ -11,6 +11,21 @@ require 'dbconn1.php';
 $config = new Config();
 $conn = $config->conn;
 
+// Fetch user details including the image
+$username = $_SESSION['username'];
+$query = "SELECT image FROM users WHERE username = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param('s', $username);
+$stmt->execute();
+$stmt->bind_result($userImage);
+$stmt->fetch();
+$stmt->close();
+
+// Default image if no profile image is uploaded
+if (empty($userImage)) {
+    $userImage = './default.jpg';
+}
+
 // Define the number of records per page
 $records_per_page = 8;
 
@@ -53,8 +68,11 @@ $total_pages = ceil($total_records / $records_per_page);
             <div class="col-2">
                     <nav class='container text-bg-dark p-3'  style="display: flex; justify-content: flex-between; flex-direction: column; min-height: 1000px; height: 100%;">
                         <div>
-                            <div class='col'>
-                                <div class="col-md-12"> <img src="./default.jpg" id="loginavatar" style="width:130px;height:130px;display: block;margin: 0 auto;border: 0 px solid;border-radius: 100%;margin: 3em auto 1.5em;object-fit: cover;" class="img-circle img-responsive"> </div>
+                            <div class="col-md-12"> 
+                                <img src="<?php echo htmlspecialchars($userImage); ?>" id="loginavatar" 
+                                    style="width:130px; height:130px; display:block; margin:0 auto; border:0px solid; border-radius:100%; margin:3em auto 1.5em; object-fit:cover;" 
+                                    class="img-circle img-responsive"
+                                > 
                             </div>
                             <div class='col text-center'>
                                 <h1 style='text-transform: capitalize;'><?php echo htmlspecialchars($_SESSION['username']); ?></h1>

@@ -26,3 +26,14 @@ INSERT INTO book (first_name, last_name, time_in, time_out) VALUES
 ('Chris', 'Brown', '2024-12-06 08:15:00', '2024-12-06 17:15:00');
 
 
+
+
+
+ALTER TABLE `users` ADD `image` VARCHAR(255) DEFAULT NULL;
+
+
+
+// after creating "upload/" file named
+
+bash:
+chmod 755 uploads/
